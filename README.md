@@ -1,9 +1,9 @@
 # SMU 2022.2
 
-Material de Referência: [Provisioning an EC2 Instance with CloudFormation (part 1)](https://jennapederson.com/blog/2021/6/21/provisioning-an-ec2-instance-with-cloudformation-part-1/), de Jenna Pederson.
+Material de Referência: [AWS > Documentation > AWS CloudFormation > User Guide > Sample templates > South America (Sao Paulo) region](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-sa-east-1.html).
 
 ## IAM
-Permissões de grupo:
+Adicionar as seguintes permitessões ao grupo de operadores:
 
 - `AmazonEC2FullAccess`
 - `AmazonVPCFullAccess`
@@ -11,7 +11,19 @@ Permissões de grupo:
 - `AWSCloudFormationFullAccess`
 
 ## EC2
-Importar chave pública. Exemplo: `etorresini@ifsc.edu.br`
+
+Importar chave pública. Pode ser gerada na própria AWS ou localmente:
+
+```sh
+ssh-keygen -t ed25519 -C <nome-da-chave> -f <arquivo>
+```
+
+e importar com:
+
+```sh
+aws ec2 import-key-pair --key-name <nome-da-chave> \ 
+--public-key-material fileb://<arquivo>.pub
+```
 
 ## CloudFormation
 
@@ -19,16 +31,15 @@ Comando para criar:
 
 ```sh
 aws cloudformation create-stack \
-  --stack-name stack-0 \
-  --template-body file://ec2+eip.yaml \
-  --parameters \
-    ParameterKey=AvailabilityZone,ParameterValue=sa-east-1a \
-    ParameterKey=EnvironmentType,ParameterValue=dev \
-    ParameterKey=KeyPairName,ParameterValue=etorresini@ifsc.edu.br
+--stack-name <nome-da-pilha> \
+--template-body file://ec2+eip.json \
+--parameters ParameterKey=KeyName,ParameterValue=<nome-da-chave>
 ````
+
+onde `<nome-da-chave>` é o mesmo valor informado para criar a chave pública em [EC2](#ec2).
 
 Comando para destruir:
 
 ```sh
-aws cloudformation delete-stack --stack-name stack-0
+aws cloudformation delete-stack --stack-name <nome-da-pilha>
 ```
