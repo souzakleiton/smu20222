@@ -18,6 +18,7 @@ Criar as seguintes variáveis de ambiente:
 - `AWS_ACCESS_KEY_ID`: ID da chave de acesso associada a um usuário IAM.
 - `AWS_SECRET_ACCESS_KEY`: chave secreta associada ao ID (item anterior).
 - `AWS_DEFAULT_REGION`: região definida como padrão ao criar os objetos na AWS.
+- `SSH_PRIVATE_KEY_AWS`: conteúdo da chave privada. As quebras de linha devem ser convertidas para `\n`, de forma que seja possível converter de volta (ver comando `tc` em `.gitpod.yml`).
 
 Em todos os itens anteriores, o escopo da varivável pode ser restrito ao repositório de trabalho (`boidacarapreta/smu20222`, por exemplo) ou manter o valor padrão (`*/*`).
 
