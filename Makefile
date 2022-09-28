@@ -1,6 +1,6 @@
 PILHA=smu
 ARQUIVO=ec2+eip.json
-CHAVE=ederson.torresini
+CHAVE=gitpod.key
 
 all: create
 
