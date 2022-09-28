@@ -2,6 +2,14 @@
 
 Material de Referência: [AWS > Documentation > AWS CloudFormation > User Guide > Sample templates > South America (Sao Paulo) region](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-sa-east-1.html).
 
+## SSH
+
+Criar um par de chaves pública e privada (pode usar par de chaves próprio, legado):
+
+```sh
+ssh-keygen -t ed25519 -C <nome-da-chave> -f <arquivo>
+```
+
 ## AWS IAM
 
 Adicionar as seguintes permitessões ao grupo de operadores:
@@ -24,17 +32,11 @@ Em todos os itens anteriores, o escopo da varivável pode ser restrito ao reposi
 
 ## Gitpod + AWS EC2
 
-Criar um par de chaves pública e privada:
-
-```sh
-ssh-keygen -t ed25519 -C <nome-da-chave> -f <arquivo>
-```
-
-e importar com:
+Importar a chave pública (se ainda não o fez) com:
 
 ```sh
 aws ec2 import-key-pair --key-name <nome-da-chave> \ 
---public-key-material fileb://<arquivo>.pub
+--public-key-material fileb://<arquivo>
 ```
 
 ## Gitpod + AWS CloudFormation
