@@ -1,6 +1,6 @@
 # SMU 2022.2
 
-Material de Referência: [AWS > Documentation > AWS CloudFormation > User Guide > Sample templates > South America (Sao Paulo) region](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-sa-east-1.html).
+Material de Referência: [AWS > Documentation > AWS CloudFormation > User Guide > Sample templates > South America (Sao Paulo) region > Amazon EC2](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-sa-east-1.html#w2ab1c33c50c13c13).
 
 ## SSH
 
