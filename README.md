@@ -2,7 +2,8 @@
 
 Material de Referência: [AWS > Documentation > AWS CloudFormation > User Guide > Sample templates > South America (Sao Paulo) region](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-sa-east-1.html).
 
-## IAM
+## AWS IAM
+
 Adicionar as seguintes permitessões ao grupo de operadores:
 
 - `AmazonEC2FullAccess`
@@ -10,9 +11,19 @@ Adicionar as seguintes permitessões ao grupo de operadores:
 - `AmazonSSMReadOnlyAccess`
 - `AWSCloudFormationFullAccess`
 
-## EC2
+## Gitpod
 
-Importar chave pública. Pode ser gerada na própria AWS ou localmente:
+Criar as seguintes variáveis de ambiente:
+
+- `AWS_ACCESS_KEY_ID`: ID da chave de acesso associada a um usuário IAM.
+- `AWS_SECRET_ACCESS_KEY`: chave secreta associada ao ID (item anterior).
+- `AWS_DEFAULT_REGION`: região definida como padrão ao criar os objetos na AWS.
+
+Em todos os itens anteriores, o escopo da varivável pode ser restrito ao repositório de trabalho (`boidacarapreta/smu20222`, por exemplo) ou manter o valor padrão (`*/*`).
+
+## Gitpod + AWS EC2
+
+Criar um par de chaves pública e privada:
 
 ```sh
 ssh-keygen -t ed25519 -C <nome-da-chave> -f <arquivo>
@@ -25,9 +36,9 @@ aws ec2 import-key-pair --key-name <nome-da-chave> \
 --public-key-material fileb://<arquivo>.pub
 ```
 
-## CloudFormation
+## Gitpod + AWS CloudFormation
 
-Comando para criar:
+O arquivo `Makefile` automatiza o processo. Manualmente, o processo para criar é:
 
 ```sh
 aws cloudformation create-stack \
@@ -36,9 +47,7 @@ aws cloudformation create-stack \
 --parameters ParameterKey=KeyName,ParameterValue=<nome-da-chave>
 ````
 
-onde `<nome-da-chave>` é o mesmo valor informado para criar a chave pública em [EC2](#ec2).
-
-Comando para destruir:
+onde `<nome-da-chave>` é o mesmo valor informado para criar a chave pública em [EC2](#ec2). Para destruir:
 
 ```sh
 aws cloudformation delete-stack --stack-name <nome-da-pilha>
