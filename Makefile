@@ -1,6 +1,6 @@
 PILHA=smu
 ARQUIVO=ec2+eip.json
-CHAVE=gitpod.key
+CHAVE=gitpod
 
 all: create
 
@@ -9,6 +9,9 @@ create:
 	--stack-name ${PILHA} \
 	--template-body file://${ARQUIVO} \
 	--parameters ParameterKey=KeyName,ParameterValue=${CHAVE}
+
+describe:
+	aws cloudformation describe-stacks
 
 destroy:
 	aws cloudformation delete-stack --stack-name ${PILHA}
