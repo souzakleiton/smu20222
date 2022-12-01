@@ -111,7 +111,7 @@ Iniciando o jogo, temos uma requisição HTTPS código 101 (Switching Protocol) 
 ```
 
 ### Negociação de mídia
-- Na requisição feita pelo agente A (8218895876101434947), o campo SDP referente a descrição de mídia, nome e endereço (m) informa que o tipo de mídia é áudio, 
+- Na requisição feita pelo agente A (8218895876101434947), o campo SDP referente a descrição de mídia, nome e endereço (__m__) informa que o tipo de mídia é áudio, 
 a porta 9 (porta fictícia ICE) sobre UDP e a lista de codecs suportados: 
 OPUS tipo 109, G.722 tipo 9, PCMU - G.711 lei μ tipo 0, PCMA - G.711 lei A tipo 8 e DTMF tipo 101, todos sendo sobre TLS/RTP/SAVPF. 
 
@@ -147,7 +147,7 @@ a=setup:actpass
 a=ssrc:1687021030 cname:{38825e36-5f4f-4afe-a964-e58794b216e5}
 ```
 
-- A confirmação por parte do agente B (6008960483522051358) retorna como tipo de mídia (m) áudio na porta 9/UDP e suporte a todos os codecs ofertados: 
+- A confirmação por parte do agente B (6008960483522051358) retorna como tipo de mídia (__m__) áudio na porta 9/UDP e suporte a todos os codecs ofertados: 
 OPUS tipo 109, G.722 tipo 9, PCMU - G.711 lei μ tipo 0, PCMA - G.711 lei A tipo 8 e DTMF tipo 101, todos sendo sobre TLS/RTP/SAVPF.
 
 ```sdp
@@ -190,6 +190,8 @@ Os codecs ofertados seguiram a RFC 3551 (seções 4.5.14 e 6), e foram aceitos p
 - De B para A: OPUS tipo 109, G.722 tipo 9, PCMU - G.711 lei μ tipo 0, PCMA - G.711 lei A tipo 8 e DTMF tipo 101, todos sendo sobre TLS/RTP/SAVPF.
 
 ## Escolha de caminho
+O parâmetro SDP (**a**) com a tag inicial __candidate__ mostra os caminhos candidatos ofertados a partir da configuração do STUN, 
+
 - SDP remoto (oferta):
 
 ```sdp
@@ -291,11 +293,11 @@ a=rtpmap:101 telephone-event/8000
 a=setup:active
 a=ssrc:3026363813 cname:{ef46a6fa-5a00-498c-b60e-3e1c1907d1b9}
 ```
+- Caminho selecionado:
 
 | Estado ICE | Nomeado | Selecionado | Candidato local | Candidato remoto | ID do componente | Prioridade | Bytes enviados | Bytes recebidos |
-| ---------- | ------- | ----------- | --------------- | ---------------- | ---------------- | ---------- | -------------- | --------------- |
-| succeeded | true | true | 2804:14d:ba4c:820f::1:50261/udp(host)
-[non-proxied] | 2804:14d:ba4c:820f::1:50294/udp(host) | 1 | 9114723795305497000 | 2340256247 | 2340251243 |
+| :--------: | :-----: | :---------: | :-------------: | :--------------: | :--------------: | :--------: | :------------: | :-------------: |
+| succeeded | true | true | 2804:14d:ba4c:820f::1:50261/udp(host)[non-proxied] | 2804:14d:ba4c:820f::1:50294/udp(host) | 1 | 9114723795305497000 | 2340256247 | 2340251243 |
 
 
 
