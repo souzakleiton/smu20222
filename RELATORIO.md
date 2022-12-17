@@ -300,8 +300,12 @@ a=ssrc:3026363813 cname:{ef46a6fa-5a00-498c-b60e-3e1c1907d1b9}
 | succeeded | true | true | 2804:14d:ba4c:820f::1:50261/udp(host)[non-proxied] | 2804:14d:ba4c:820f::1:50294/udp(host) | 1 | 9114723795305497000 | 2340256247 | 2340251243 |
 
 
+## Transporte de mídia
 
+O transporte de mídia se dá através do protocolo SRTP, que é uma extensão do protocolo de transporte em tempo real (RTP) com ferramentas segurança otimizadas, fornecendo criptografia, autenticação e integridade de mensagens e proteção de resposta no tráfego de mídia. O parâmetro identificador da fonte de sincronismo (SSRC) é muito importante, pois impede que ocorram perdas de sincronismo entre as mensagens. 
 
+O controle da qualidade é feito pelo SRCTP, que é uma extensão do protocolo de controle de transporte em tempo real (RCTP) com ferramentas de segurança otimizadas, que troca pacotes de controle (_sender_, _receiver_) entre os participantes, para coletar informações sobre a qualidade da sessão de mídia e ao final é possível gerar um relatório (_report_) para conferir dados importante sobre a qualidade da aplicação. Quando a chamada fica ruim e existem muitas perdas de pacotes, um novo acordo é proposto para reduzir a qualidade dos codecs e manter o nível da chamada em estado funcional.
 
+O WebRTC implementa o uso de FEC um mecanismo que envia pacotes com informação duplicada, para reduzir o número retransmissões por perda de pacotes causadas por atraso e _jitter_.
 
 
