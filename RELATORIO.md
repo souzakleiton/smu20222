@@ -109,6 +109,11 @@ Iniciando o jogo, temos uma requisição HTTPS código 101 (Switching Protocol) 
 	]
 }
 ```
+- Transação: 
+Uma sequência válida de mensagens, neste exemplo _offer_ e _answer_, é chamada de transação.
+
+- Diálogo: 
+Uma sequência de transações, é chamada de dialogo. No exemplo em questão, o diálogo é composto de uma única transação.
 
 ### Negociação de mídia
 - Na requisição feita pelo agente A (8218895876101434947), o campo SDP referente a descrição de mídia, nome e endereço (__m__) informa que o tipo de mídia é áudio, 
@@ -188,6 +193,8 @@ Os codecs ofertados seguiram a RFC 3551 (seções 4.5.14 e 6), e foram aceitos p
 
 - De A para B: OPUS tipo 109, G.722 tipo 9, PCMU - G.711 lei μ tipo 0, PCMA - G.711 lei A tipo 8 e DTMF tipo 101, todos sendo sobre TLS/RTP/SAVPF.
 - De B para A: OPUS tipo 109, G.722 tipo 9, PCMU - G.711 lei μ tipo 0, PCMA - G.711 lei A tipo 8 e DTMF tipo 101, todos sendo sobre TLS/RTP/SAVPF.
+
+Uma funcionalidade interessante do codec Opus é a possibilidade do uso de FEC (_Forward Error Correction_), um mecanismo que envia pacotes com informação duplicada, para reduzir o número retransmissões por perda de pacotes causadas por atraso e _jitter_.
 
 ## Escolha de caminho
 O parâmetro SDP (**a**) com a tag inicial __candidate__ mostra os caminhos candidatos ofertados a partir da configuração do STUN, 
@@ -305,7 +312,5 @@ a=ssrc:3026363813 cname:{ef46a6fa-5a00-498c-b60e-3e1c1907d1b9}
 O transporte de mídia se dá através do protocolo SRTP, que é uma extensão do protocolo de transporte em tempo real (RTP) com ferramentas segurança otimizadas, fornecendo criptografia, autenticação e integridade de mensagens e proteção de resposta no tráfego de mídia. O parâmetro identificador da fonte de sincronismo (SSRC) é muito importante, pois impede que ocorram perdas de sincronismo entre as mensagens. 
 
 O controle da qualidade é feito pelo SRCTP, que é uma extensão do protocolo de controle de transporte em tempo real (RCTP) com ferramentas de segurança otimizadas, que troca pacotes de controle (_sender_, _receiver_) entre os participantes, para coletar informações sobre a qualidade da sessão de mídia e ao final é possível gerar um relatório (_report_) para conferir dados importante sobre a qualidade da aplicação. Quando a chamada fica ruim e existem muitas perdas de pacotes, um novo acordo é proposto para reduzir a qualidade dos codecs e manter o nível da chamada em estado funcional.
-
-O WebRTC implementa o uso de FEC um mecanismo que envia pacotes com informação duplicada, para reduzir o número retransmissões por perda de pacotes causadas por atraso e _jitter_.
 
 
